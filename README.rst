@@ -43,6 +43,11 @@ If you host a Postgres database you should as well create a database::
    >>> sudo service postgresql restart
 
 
+Get the repository
+------------------
+
+    >>> git clone https://github.com/gardiac2002/medicus/
+
 Installation
 ------------
 Follow those installation steps::
