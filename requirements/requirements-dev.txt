@@ -1,0 +1,25 @@
+-r requirements.txt
+
+########################
+# Web Scraping
+########################
+scrapy
+
+
+########################
+# Testing
+########################
+pytest
+pytest-django
+pytest-cov
+flake8
+tox
+coverage
+Sphinx
+
+
+########################
+# Debugging
+########################
+ipdb
+jupyter
