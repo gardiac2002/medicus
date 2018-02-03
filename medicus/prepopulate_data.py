@@ -25,6 +25,7 @@ def prepopulate_data():
             if d['address'].lower().strip() == 'n/a':
                 address=None
             else:
+                address = d['address'] or ''
                 address = models.Address.objects.get_or_create(
                     city=city,
                     country=country,
@@ -39,7 +40,7 @@ def prepopulate_data():
             doctor = models.Doctor(
                 name=d['name'].strip(),
                 profession=profession,
-                address=None,
+                address=address,
                 phone=phone,
             )
 

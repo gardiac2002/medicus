@@ -51,11 +51,11 @@ def prepopulate_data():
             doctor.save()
 
 
-def load_stores(apps, schema_editor):
+def load_doctors(apps, schema_editor):
     prepopulate_data()
 
 
-def delete_stores(apps, schema_editor):
+def delete_doctors(apps, schema_editor):
     models.Country.objects.all().delete()
     models.Profession.objects.all().delete()
     models.City.objects.all().delete()
@@ -68,5 +68,5 @@ class Migration(migrations.Migration):
         ('medicus', '0001_initial'),
     ]
     operations = [
-        migrations.RunPython(load_stores, delete_stores),
+        migrations.RunPython(load_doctors, delete_doctors),
     ]
