@@ -1,3 +1,7 @@
+
+{% load static %}
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -7,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>GARO ESTATE | Properties  page</title>
+        <title>medicus</title>
         <meta name="description" content="GARO is a real-estate template">
         <meta name="author" content="Kimarotec">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -19,21 +23,22 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-        <link rel="stylesheet" href="assets/css/normalize.css">
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/fontello.css">
-        <link href="assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-        <link href="assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-        <link href="assets/css/animate.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="assets/css/bootstrap-select.min.css"> 
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/icheck.min_all.css">
-        <link rel="stylesheet" href="assets/css/price-range.css">
-        <link rel="stylesheet" href="assets/css/owl.carousel.css">  
-        <link rel="stylesheet" href="assets/css/owl.theme.css">
-        <link rel="stylesheet" href="assets/css/owl.transitions.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="{% static "assets/css/normalize.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/font-awesome.min.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/fontello.css" %}">
+        <link href="{% static "assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" %}" rel="stylesheet">
+        <link href="{% static "assets/fonts/icon-7-stroke/css/helper.css" %}" rel="stylesheet">
+        <link href="{% static "assets/css/animate.css" %}" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{% static "assets/css/bootstrap-select.min.css" %}">
+        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/icheck.min_all.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/price-range.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/owl.carousel.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/owl.theme.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/owl.transitions.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/lightslider.min.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/responsive.css" %}">
     </head>
     <body>
 
@@ -80,7 +85,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src=" {% static "assets/img/logo.png" %}" alt=""></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -414,7 +419,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-3.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -424,9 +429,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -437,7 +442,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-2.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -447,9 +452,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -459,14 +464,14 @@
 
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item proerty-item-ads">
-                                    <a href="" ><img src="assets/img/pro-ads.jpg"></a>
+                                    <a href="" ><img src=" {% static "assets/img/pro-ads.jpg" %}"></a>
                                 </div>
                             </div> 
 
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-3.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -476,9 +481,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -489,7 +494,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-1.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -499,9 +504,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -512,7 +517,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-2.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -522,9 +527,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -535,7 +540,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-3.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -545,9 +550,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -558,7 +563,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-2.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -568,9 +573,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -581,7 +586,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-1.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -591,9 +596,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -603,14 +608,14 @@
                             
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item proerty-item-ads">
-                                    <a href="" ><img src="assets/img/pro-ads.jpg"></a>
+                                    <a href="" ><img src=" {% static "assets/img/pro-ads.jpg" %}"></a>
                                 </div>
                             </div>
 
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-2.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-2.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -620,9 +625,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -633,7 +638,7 @@
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
+                                        <a href="property-1.html" ><img src=" {% static "assets/img/demo/property-1.jpg" %}"></a>
                                     </div>
 
                                     <div class="item-entry overflow">
@@ -643,9 +648,9 @@
                                         <span class="proerty-price pull-right"> $ 300,000</span>
                                         <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                         <div class="property-icon">
-                                            <img src="assets/img/icon/bed.png">(5)|
-                                            <img src="assets/img/icon/shawer.png">(2)|
-                                            <img src="assets/img/icon/cars.png">(1)  
+                                            <img src=" {% static "assets/img/icon/bed.png" %}">(5)|
+                                            <img src=" {% static "assets/img/icon/shawer.png" %}">(2)|
+                                            <img src=" {% static "assets/img/icon/cars.png" %}">(1)  
                                         </div>
                                     </div>
 
@@ -685,7 +690,7 @@
                                 <h4>About us </h4>
                                 <div class="footer-title-line"></div>
 
-                                <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
+                                <img src=" {% static "assets/img/footer-logo.png" %}" alt="" class="wow pulse" data-wow-delay="1s">
                                 <p>Lorem ipsum dolor cum necessitatibus su quisquam molestias. Vel unde, blanditiis.</p>
                                 <ul class="footer-adress">
                                     <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
@@ -716,7 +721,7 @@
                                     <li>
                                         <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                             <a href="single.html">
-                                                <img src="assets/img/demo/small-proerty-2.jpg">
+                                                <img src=" {% static "assets/img/demo/small-proerty-2.jpg" %}">
                                             </a>
                                             <span class="blg-date">12-12-2016</span>
 
@@ -730,7 +735,7 @@
                                     <li>
                                         <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                             <a href="single.html">
-                                                <img src="assets/img/demo/small-proerty-2.jpg">
+                                                <img src=" {% static "assets/img/demo/small-proerty-2.jpg" %}">
                                             </a>
                                             <span class="blg-date">12-12-2016</span>
 
@@ -744,7 +749,7 @@
                                     <li>
                                         <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                                             <a href="single.html">
-                                                <img src="assets/img/demo/small-proerty-2.jpg">
+                                                <img src=" {% static "assets/img/demo/small-proerty-2.jpg" %}">
                                             </a>
                                             <span class="blg-date">12-12-2016</span>
 
@@ -811,17 +816,18 @@
 
         </div>
 
-       <script src="assets/js/modernizr-2.6.2.min.js"></script>
-        <script src="assets/js/jquery-1.10.2.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootstrap-select.min.js"></script>
-        <script src="assets/js/bootstrap-hover-dropdown.js"></script>
-        <script src="assets/js/easypiechart.min.js"></script>
-        <script src="assets/js/jquery.easypiechart.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/wow.js"></script>
-        <script src="assets/js/icheck.min.js"></script>
-        <script src="assets/js/price-range.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="{% static "assets/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+        <script src="{% static "assets/js/jquery-1.10.2.min.js" %}"></script>
+        <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "assets/js/bootstrap-select.min.js" %}"></script>
+        <script src="{% static "assets/js/bootstrap-hover-dropdown.js" %}"></script>
+        <script src="{% static "assets/js/easypiechart.min.js" %}"></script>
+        <script src="{% static "assets/js/jquery.easypiechart.min.js" %}"></script>
+        <script src="{% static "assets/js/owl.carousel.min.js" %}"></script>
+        <script src="{% static "assets/js/wow.js" %}"></script>
+        <script src="{% static "assets/js/icheck.min.js" %}"></script>
+        <script src="{% static "assets/js/price-range.js" %}"></script>
+        <script type="text/javascript" src="{% static "assets/js/lightslider.min.js" %}"></script>
+        <script src="{% static "assets/js/main.js" %}"></script>
     </body>
 </html>

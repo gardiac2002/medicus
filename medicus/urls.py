@@ -23,7 +23,9 @@ from medicus import views
 
 
 urlpatterns = [
+    path(r'', views.index),
+    url(r'^listing', views.listing),
+
     url(r'^admin/', admin.site.urls),
-    path('index', views.index),
 ]
 urlpatterns += staticfiles_urlpatterns()
