@@ -20,43 +20,28 @@
         </div>
         <!--End top header -->
 
+        <div class="content text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                    <h2>Find your doctor!</h2>
+                    <p>medicus: an easy way to search for doctors in your city</p>
+                    <div class="search-form wow pulse" data-wow-delay="0.8s">
 
+                        <form action="" class=" form-inline">
+                            <!--<button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>-->
 
-        <div class="slider-area">
-            <div class="slider">
-                <div id="bg-slider" class="owl-carousel owl-theme">
-
-                    <div class="item"><img src="{% static "assets/img/slide1/slider-image-1.jpg" %}" alt="GTA V"></div>
-                    <div class="item"><img src="{% static "assets/img/slide1/slider-image-2.jpg" %}"
-                         alt="The Last of us"></div>
-                    <div class="item"><img src="{% static "assets/img/slide1/slider-image-1.jpg" %}"
-                        alt="GTA V"></div>
-
-                </div>
-            </div>
-            <div class="slider-content">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                        <h2>property Searching Just Got So Easy</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>
-                        <div class="search-form wow pulse" data-wow-delay="0.8s">
-
-                            <form action="" class=" form-inline">
-                                <!--<button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>-->
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Key word">
-                                </div>
-                                <div class="form-group">
-                                    <select id="lunchBegins" class="selectpicker" data-live-search="true"
-                                            data-live-search-style="begins" title="Select your city">
-                                        <option>Bacau</option>
-                                        <option>Cluj</option>
-                                    </select>
-                                </div>
-                                <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search by specialty or name">
+                            </div>
+                            <div class="form-group">
+                                <select id="lunchBegins" class="selectpicker" data-live-search="true"
+                                        data-live-search-style="begins" title="Select your city">
+                                    <option>Bacau</option>
+                                    <option>Cluj</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Search</button>
+                        </form>
                     </div>
                 </div>
             </div>
