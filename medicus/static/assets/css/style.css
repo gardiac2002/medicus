@@ -759,10 +759,22 @@ label small{
     background-color: #FDC600;
     margin-right: 5px;
 }
-.nav-button:hover{
-    background-color: #FDC600;
+.nav-button.login:hover{
+    background-color: orange;
+}
+
+.nav-button.proposeDoctor{
+    background-color: green;
+    margin-right: 5px;
+}
+
+.nav-button.proposeDoctor:hover{
+    background-color: darkgreen;
+    margin-right: 5px;
 
 }
+
+
 .navbar{
     margin-bottom: 0px;
     min-height: 100px;
@@ -3044,3 +3056,17 @@ padding: 10px;
 #map {
     height: 300px;
 }
+
+.ratingstar {
+    font-size: 40px;
+}
+.ratingtext {
+    font-size: 50px;
+    align: centered;
+}
+
+.ratingbox {
+    margin: 1em;
+    margin-top: 2.5em;
+}
+
