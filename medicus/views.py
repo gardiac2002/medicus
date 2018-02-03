@@ -20,3 +20,7 @@ def listing(request):
     template = loader.get_template('medicus/listing.html')
     return HttpResponse(template.render({}, request))
 
+
+def propose_doctor(request):
+    template = loader.get_template('medicus/proposedoctor.html')
+    return HttpResponse(template.render({}, request))

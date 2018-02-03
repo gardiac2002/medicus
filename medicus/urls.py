@@ -25,6 +25,7 @@ from medicus import views
 urlpatterns = [
     path(r'', views.index),
     url(r'^listing', views.listing),
+    url(r'^propose-doctor', views.propose_doctor),
 
     url(r'^admin/', admin.site.urls),
 ]
