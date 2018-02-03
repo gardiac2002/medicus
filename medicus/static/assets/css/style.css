@@ -735,8 +735,12 @@ label small{
     margin-right: 20px
 }
 .navbar-brand {
-
+    margin-top: 1em;
 }
+
+.listingname{
+}
+
 .main-nav {
     padding-top: 10px;
 }
