@@ -25,7 +25,7 @@ from medicus import views
 urlpatterns = [
     path(r'', views.index),
     url(r'^listing/(?P<city>\w+)', views.DoctorListView.as_view()),
-    url(r'^listing/(?P<pk>\d+)/$', view=views.DoctorDetailView.as_view()),
+    url(r'^doctor/(?P<pk>\d+)/$', view=views.DoctorDetailView.as_view()),
     url(r'^user/(?P<pk>\d+)/$', view=views.UserDetailView.as_view()),
     url(r'^propose-doctor', views.propose_doctor),
 

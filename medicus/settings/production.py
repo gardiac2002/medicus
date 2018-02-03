@@ -98,6 +98,10 @@ DATABASES = {
 
 MEDIA_ROOT = os.path.join(HOME_DIR, '.medicus/media')
 
+
+# prepopulation data
+DATA_ROOT = os.path.join(HOME_DIR, '.medicus/prepopulation_data')
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

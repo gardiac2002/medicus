@@ -67,8 +67,10 @@ class Address(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True, null=True)
 
-    street = models.CharField(max_length=150)
-    house_number = models.CharField(max_length=10)
+    street = models.CharField(max_length=150, blank=True, default='')
+    house_number = models.CharField(max_length=10, blank=True, default='')
+
+    name = models.CharField(max_length=200)
 
     def __str__(self):
         return str((self.street, self.house_number))
@@ -85,8 +87,8 @@ class Doctor(models.Model):
     name = models.CharField(max_length=100, blank=False)
 
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=25, blank=True, default='')
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, blank=True, null=True)
+    phone_number = models.CharField(max_length=50, blank=True, default='')
     email = models.CharField(max_length=150, blank=True, default='')
     info = models.TextField(blank=True, default='')
     picture = models.ImageField(upload_to='doctor/images', blank=True)
