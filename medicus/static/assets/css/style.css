@@ -736,8 +736,10 @@ label small{
     margin-right: 20px
 }
 .navbar-brand {
-    margin-top: 1em;
+    padding-top:0;
+    padding-bottom: 0;
 }
+.navbar-brand img { height: 50px; }
 
 .listingname{
 }

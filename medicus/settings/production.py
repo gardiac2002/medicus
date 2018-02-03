@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+
     'medicus',
 ]
 
@@ -143,6 +145,6 @@ USE_TZ = True
 
 DEBUG = False
 SECRET_KEY = os.environ.get('DJANGO_SECRET')
-
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # assert DEBUG == False
 # assert SECRET_KEY
