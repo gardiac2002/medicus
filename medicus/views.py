@@ -24,3 +24,8 @@ def listing(request):
 def propose_doctor(request):
     template = loader.get_template('medicus/proposedoctor.html')
     return HttpResponse(template.render({}, request))
+
+
+def doctor(request):
+    template = loader.get_template('medicus/doctor.html')
+    return HttpResponse(template.render({}, request))
