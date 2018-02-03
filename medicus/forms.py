@@ -8,6 +8,14 @@ from medicus import models as medicus_models
 #
 #
 
+class SearchDoctorForm(forms.Form):
+    """
+    Search a doctor on the website.
+    """
+    profession = forms.CharField(label='profession', max_length=120)
+    city = forms.CharField(required=True, label='city', max_length=120)
+
+
 
 class ProposeDoctorForm(forms.ModelForm):
     class Meta:

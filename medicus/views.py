@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse, Http404
+from django.http import HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, UpdateView
@@ -18,13 +19,30 @@ def index(request):
     :param request:
     :return:
     """
-    template = loader.get_template('medicus/index.html')
-    return HttpResponse(template.render({}, request))
+
+    form = medicus_forms.SearchDoctorForm()
+    return render(request, 'medicus/index.html', {'form': form})
 
 
-# def listing(request):
-#     template = loader.get_template('medicus/listing.html')
-#     return HttpResponse(template.render({}, request))
+def search(request):
+    if request.method == 'POST':
+        form = medicus_forms.SearchDoctorForm(request.POST)
+
+        if form.is_valid():
+            city = form.data.get('city')
+            profession = form.data.get('profession')
+            link = 'listing/{profession}/{city}/'.format(city=city, profession=profession)
+            return HttpResponseRedirect(link)
+        else:
+            return render(request, 'medicus/index.html', {})
+    else:
+        return render(request, 'medicus/index.html', {})
+
+
+def doctor_list(request, city, profession):
+    if request.method == 'GET':
+
+        return render(request, 'medicus/listing.html', {})
 
 
 class DoctorListView(ListView):
@@ -39,24 +57,23 @@ class DoctorListView(ListView):
         qs = super().get_queryset()
 
         qs = qs.filter(address__city__name__iexact=city)
-
         return qs
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, city, profession):
         try:
-            city = request.data['city']
-            name_or_profession = request.data.get('name_or_profession')
+            # city = request.data['city']
+            # name_or_profession = request.data.get('name_or_profession')
 
             # TODO add form validation
 
             qs = models.Doctor.objects.all().filter(address__city__name__iexact=city)
-            if name_or_profession:
+            if profession:
                 try:
-                    professions = models.Profession.objects.get(name=name_or_profession)
+                    professions = models.Profession.objects.get(name=profession)
                     if professions:
                         qs = qs.filter(profession__name=professions)
                 except models.Profession.DoesNotExist:
-                    qs = qs.filter(name__icontains=name_or_profession)
+                    qs = qs.filter(name__icontains=profession)
 
             return qs
 
