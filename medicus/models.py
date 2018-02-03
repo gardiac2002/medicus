@@ -62,6 +62,7 @@ class Location(models.Model):
 
 
 class Address(models.Model):
+    name = models.CharField(max_length=200, blank=True, )
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
@@ -69,8 +70,6 @@ class Address(models.Model):
 
     street = models.CharField(max_length=150, blank=True, default='')
     house_number = models.CharField(max_length=10, blank=True, default='')
-
-    name = models.CharField(max_length=200)
 
     def __str__(self):
         return str((self.street, self.house_number))
