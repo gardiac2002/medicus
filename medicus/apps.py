@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class RecommenderConfig(AppConfig):
-    name = 'recommender'
+class MedicusConfig(AppConfig):
+    name = 'medicus'
