@@ -18,6 +18,13 @@ class Province(models.Model):
         return self.name
 
 
+class PostalCode(models.Model):
+    postal_code = models.IntegerField()
+
+    def __str__(self):
+        return str(self.postal_code)
+
+
 class District(models.Model):
     name = models.CharField(max_length=100)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
@@ -31,7 +38,24 @@ class City(models.Model):
     name = models.CharField(max_length=100)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
+
+    # postal_code = models.ForeignKey(PostalCode, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+class Location(models.Model):
+    name = models.CharField(max_length=100)
+
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+
+    district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
+
+    postal_code = models.OneToOneField(PostalCode, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -39,9 +63,10 @@ class City(models.Model):
 
 class Address(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, null=True)
-    district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
+
+    city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True, null=True)
+
     street = models.CharField(max_length=150)
     house_number = models.CharField(max_length=10)
 
@@ -63,7 +88,40 @@ class Doctor(models.Model):
     phone_number = models.CharField(max_length=25, blank=True, default='')
     email = models.CharField(max_length=150, blank=True, default='')
     info = models.TextField(blank=True, default='')
-    picture = models.ImageField(upload_to='doctor/images')
+    picture = models.ImageField(upload_to='doctor/images', blank=True)
 
     def __str__(self):
         return str((self.name, self.profession))
+
+
+class User(models.Model):
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    address = models.ForeignKey(Address, blank=True, null=True, on_delete=models.CASCADE)
+    password = models.CharField(max_length=100, )
+    doctor = models.OneToOneField(Doctor, blank=True, null=True, on_delete=models.CASCADE)
+
+
+class Rating(models.Model):
+    RAITING_CHOICES = (
+        (1, 'insufficient'),
+        (2, 'sufficient'),
+        (3, 'satisfactory'),
+        (4, 'good'),
+        (5, 'very good')
+    )
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+
+    treatment = models.IntegerField(choices=RAITING_CHOICES)
+    empathy = models.IntegerField(choices=RAITING_CHOICES)
+    price = models.IntegerField(choices=RAITING_CHOICES)
+    waiting_time = models.IntegerField(choices=RAITING_CHOICES)
+
+    comment = models.TextField(blank=True, default='')
+
+    @property
+    def general_score(self):
+        scores = [self.treatment, self.empathy, self.price, self.waiting_time]
+        average = sum(scores) / len(scores)
+
+        return average

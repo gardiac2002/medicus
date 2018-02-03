@@ -14,6 +14,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+from django.core.exceptions import ImproperlyConfigured
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HOME_DIR = os.path.expanduser('~')
@@ -72,10 +75,21 @@ WSGI_APPLICATION = 'medicus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+def get_env_variable(var_name: str) -> str:
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        msg = 'Set the {} environment variable'.format(var_name)
+        raise ImproperlyConfigured(msg)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_variable('MEDICUS_DB'),
+        'USER': 'medicus',
+        'PASSWORD': get_env_variable('MEDICUS_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
