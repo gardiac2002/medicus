@@ -27,7 +27,7 @@ class PostalCode(models.Model):
 
 class District(models.Model):
     name = models.CharField(max_length=100)
-    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, blank=True, null=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -37,7 +37,7 @@ class District(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=100)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, blank=True, null=True)
     district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
 
     # postal_code = models.ForeignKey(PostalCode, on_delete=models.CASCADE)
@@ -83,6 +83,7 @@ class Profession(models.Model):
 
 class Doctor(models.Model):
     name = models.CharField(max_length=100, blank=False)
+
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=25, blank=True, default='')
@@ -97,13 +98,16 @@ class Doctor(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
+
     address = models.ForeignKey(Address, blank=True, null=True, on_delete=models.CASCADE)
     password = models.CharField(max_length=100, )
+
+    # if a user is also a doctor
     doctor = models.OneToOneField(Doctor, blank=True, null=True, on_delete=models.CASCADE)
 
 
 class Rating(models.Model):
-    RAITING_CHOICES = (
+    RATING_CHOICES = (
         (1, 'insufficient'),
         (2, 'sufficient'),
         (3, 'satisfactory'),
@@ -111,11 +115,12 @@ class Rating(models.Model):
         (5, 'very good')
     )
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    treatment = models.IntegerField(choices=RAITING_CHOICES)
-    empathy = models.IntegerField(choices=RAITING_CHOICES)
-    price = models.IntegerField(choices=RAITING_CHOICES)
-    waiting_time = models.IntegerField(choices=RAITING_CHOICES)
+    treatment = models.IntegerField(choices=RATING_CHOICES)
+    empathy = models.IntegerField(choices=RATING_CHOICES)
+    price = models.IntegerField(choices=RATING_CHOICES)
+    waiting_time = models.IntegerField(choices=RATING_CHOICES)
 
     comment = models.TextField(blank=True, default='')
 
