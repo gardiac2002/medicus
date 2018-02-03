@@ -84,12 +84,8 @@ def get_env_variable(var_name: str) -> str:
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': get_env_variable('MEDICUS_DB'),
-        'USER': 'medicus',
-        'PASSWORD': get_env_variable('MEDICUS_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
