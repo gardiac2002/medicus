@@ -74,3 +74,12 @@ class UserDetailView(DetailView):
     model = models.User
     template_name = 'medicus/user_profile.html'
 
+
+def propose_doctor(request):
+    template = loader.get_template('medicus/proposedoctor.html')
+    return HttpResponse(template.render({}, request))
+
+
+def doctor(request):
+    template = loader.get_template('medicus/doctor.html')
+    return HttpResponse(template.render({}, request))
