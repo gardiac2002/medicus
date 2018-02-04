@@ -39,6 +39,10 @@ def search(request):
         return render(request, 'medicus/index.html', {})
 
 
+def doctor(request):
+    return render(request, 'medicus/doctor.html', {})
+
+
 def doctor_list(request, city, profession):
     if request.method == 'GET':
 
