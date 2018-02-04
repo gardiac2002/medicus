@@ -16,19 +16,16 @@ class SearchDoctorForm(forms.Form):
     city = forms.CharField(required=True, label='city', max_length=120)
 
 
+class ProposeDoctorForm(forms.Form):
 
-class ProposeDoctorForm(forms.ModelForm):
-    class Meta:
-        model = medicus_models.Doctor
-        fields = (
-            'name',
-            'profession',
-            'address',
-            'phone_number',
-            'email',
-            'info',
-            'picture'
-        )
+    name = forms.CharField(label='name', max_length=128)
+    profession = forms.CharField(label='profession', max_length=128)
+    address = forms.CharField(label='address', max_length=128)
+    city = forms.CharField(label='city', max_length=128)
+    telephone = forms.CharField(label='telephone', max_length=64)
+    email = forms.EmailField(required=False, label='email', max_length=128)
+    website = forms.URLField(required=False, label='website', max_length=128)
+
 
 
 class NewRatingForm(forms.ModelForm):

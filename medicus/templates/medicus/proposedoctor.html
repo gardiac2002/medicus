@@ -22,32 +22,45 @@
                         <div class="" id="contact1">
 
                             <h2>Propose a doctor</h2>
-                            <form>
+                            <form method="post" action="propose-doctor">
+
+                                {% csrf_token %}
+                                {% if form.errors %}
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <div class="alert alert-danger">
+
+                                                    <strong>{{field.label}}: {{ error|escape }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        {% for error in form.non_field_errors %}
+                                            <div class="alert alert-danger">
+                                                <strong>{{ error|escape }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                {% endif %}
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="firstname">Firstname</label>
-                                            <input type="text" class="form-control" id="firstname">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="lastname">Lastname</label>
-                                            <input type="text" class="form-control" id="lastname">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name">
                                         </div>
                                     </div>
 
+
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="lastname">Street</label>
-                                            <input type="text" class="form-control" id="street">
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" id="address" name="address">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="city">City</label>
-                                            <select id="city" class="selectpicker" data-live-search="true"
+                                            <select id="city" name="city" class="selectpicker" data-live-search="true"
                                                     data-live-search-style="begins" title="Select your city">
                                                 <option>Bacau</option>
                                                 <option>Cluj</option>
@@ -57,8 +70,8 @@
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label for="specialization">Specialization</label>
-                                            <input type="text" class="form-control" id="specialization">
+                                            <label for="profession">Profession</label>
+                                            <input type="text" class="form-control" name="profession" id="profession">
                                         </div>
                                     </div>
 
@@ -67,20 +80,20 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="telephone">Telephone Number</label>
-                                            <input type="text" class="form-control" id="telephone">
+                                            <input type="text" class="form-control" name="telephone" id="telephone">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email">
+                                            <input type="text" class="form-control" id="email" name="email">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="website">Website</label>
-                                            <input type="text" class="form-control" id="website">
+                                            <input type="text" class="form-control" id="website" name="website">
                                         </div>
                                     </div>
                                     <div class="col-sm-12 text-center">
