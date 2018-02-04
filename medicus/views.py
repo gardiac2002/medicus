@@ -50,8 +50,17 @@ def doctor(request):
 
 def doctor_list(request, city, profession):
     if request.method == 'GET':
+        city_obj = models.City.objects.get(name=city)
+        profession_obj = models.Profession.objects.get(name=profession)
+        doctors = models.Doctor.objects.filter(city=city_obj, profession=profession_obj)
 
-        return render(request, 'medicus/listing.html', {})
+        data = {
+            'city': city,
+            'doctors': doctors
+        }
+        return render(request,
+                      'medicus/listing.html',
+                      data)
 
 
 
