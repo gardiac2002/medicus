@@ -37,6 +37,8 @@ INSTALLED_APPS = [
 
     'crispy_forms',
 
+    'social_django',
+
     'medicus',
 ]
 
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'medicus.urls'
@@ -63,6 +66,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -70,6 +76,23 @@ TEMPLATES = [
 TEMPLATE_CONTEXT_PROCESSORS = (
             'django.core.context_processors.static',
 )
+
+AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.yahoo.YahooOpenId',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+# Auth urls
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = ''
+
 
 WSGI_APPLICATION = 'medicus.wsgi.application'
 
@@ -84,10 +107,21 @@ def get_env_variable(var_name: str) -> str:
         msg = 'Set the {} environment variable'.format(var_name)
         raise ImproperlyConfigured(msg)
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_variable('MEDICUS_DB'),
+        'USER': get_env_variable('MEDICUS_USER'),
+        'PASSWORD': get_env_variable('MEDICUS_PASSWORD'),
+        'HOST': get_env_variable('MEDICUS_HOST'),
+        'PORT': get_env_variable('MEDICUS_PORT'),
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
