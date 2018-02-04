@@ -73,8 +73,8 @@ class Address(models.Model):
 
     address = models.CharField(max_length=200)
 
-    def __str__(self):
-        return str((self.street, self.house_number))
+    # def __str__(self):
+    #     return str((self.street, self.house_number))
 
 
 class Profession(models.Model):
@@ -88,7 +88,7 @@ class Doctor(models.Model):
     name = models.CharField(max_length=100, blank=False)
 
     profession = models.ForeignKey(Profession, on_delete=models.DO_NOTHING)
-    street = models.CharField(max_length=120)
+    street = models.CharField(max_length=200, blank=True, default='')
     city = models.ForeignKey(City, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     # address = models.ForeignKey(Address, on_delete=models.CASCADE, blank=True, null=True)
