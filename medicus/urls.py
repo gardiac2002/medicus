@@ -29,7 +29,7 @@ urlpatterns = [
 
     url(r'^search', views.search),
     url(r'^thanks', views.thanks),
-    url(r'^doctor', views.doctor),
+    url(r'^doctor/(?P<doctorid>\d+)', views.doctor),
     # url(r'^doctor/(?P<pk>\d+)/$', view=views.DoctorDetailView.as_view()),
     # url(r'^user/(?P<pk>\d+)/$', view=views.UserDetailView.as_view()),
     url(r'^addadoctor', views.propose_doctor),
