@@ -47,7 +47,11 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="profession" id="profession" placeholder="Specialty">
+                                            <select type="text" class="selectpicker" name="profession" id="profession" data-live-search="true" data-live-search-style="begins" placeholder="Specialty">
+                                              {% for prof in professions %}
+                                              <option>{{ prof }}</option>
+                                              {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
 
@@ -61,8 +65,7 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <select id="city" name="city" class="selectpicker" data-live-search="true"
-                                                    data-live-search-style="begins" title="Select city">
+                                            <select id="city" name="city" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select city">
                                                 <option>Bacau</option>
                                                 <option>Cluj</option>
                                             </select>
