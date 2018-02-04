@@ -20,41 +20,43 @@
                 <div class="row  pr0 padding-top-40 properties-page">
                     <div class="col-md-12 clear ">
                         <div id="list-type" class="proerty-th">
-
+                            {% if not doctors%}
+                                <p>
+                                    <strong>Could not find a doctor with specialization "{{profession|escape}}" in {{city|escape}}!</strong>
+                                </p>
+                            {% endif %}
 
                             {% for doctor in doctors %}
-
-
-                            <div class="col-sm-6 col-md-12 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="col-md-4">
-                                        <div class="ratingbox">
-                                            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
-                                            <span class="glyphicon glyphicon-star-empty ratingstar" aria-hidden="true"></span>
-                                            <p class="ratingtext">3.8</p>
+                                <div class="col-sm-6 col-md-12 p0">
+                                    <div class="box-two proerty-item">
+                                        <div class="col-md-4">
+                                            <div class="ratingbox">
+                                                <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+                                                <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+                                                <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+                                                <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+                                                <span class="glyphicon glyphicon-star-empty ratingstar" aria-hidden="true"></span>
+                                                <p class="ratingtext">3.8</p>
+                                            </div>
                                         </div>
+
+
+                                            <div class="col-md-8">
+                                                <h2 class="doc-name">
+                                                    <a href="/doctor/{{doctor.id}}" >{{ doctor.name }}</a>
+                                                </h2>
+                                                <p class="details">
+                                                  {{ doctor.street }}, {{doctor.city}}<br>
+                                                  <a href="tel:{{doctor.phone_number}}">{{ doctor.phone_number }}</a>
+                                                </p>
+                                            </div>
+
+
+
                                     </div>
-
-
-                                        <div class="col-md-8">
-                                            <h2 class="doc-name">
-                                                <a href="/doctor/{{doctor.id}}" >{{ doctor.name }}</a>
-                                            </h2>
-                                            <p class="details">
-                                              {{ doctor.street }}, {{doctor.city}}<br>
-                                              <a href="tel:{{doctor.phone_number}}">{{ doctor.phone_number }}</a>
-                                            </p>
-                                        </div>
-
-
-
                                 </div>
-                            </div>
 
-                                                                {% endfor %}
+                            {% endfor %}
 
 
                         </div>

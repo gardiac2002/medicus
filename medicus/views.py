@@ -114,6 +114,9 @@ def doctor(request, doctorid):
         street = doctor_obj.street
         street = street.replace('(', '').replace(')', '')
 
+        if doctor_obj.phone_number:
+            doctor_obj.phone_number = doctor_obj.phone_number.replace(' (cabinet)', '')
+
         data = {
             'name': doctor_obj.name,
             'profession': doctor_obj.profession,
@@ -124,7 +127,6 @@ def doctor(request, doctorid):
             'email': doctor_obj.email,
             'website': doctor_obj.website,
         }
-
         return render(request, 'medicus/doctor.html', data)
 
 
@@ -141,9 +143,21 @@ def doctor_list(request, city, profession):
         except ObjectDoesNotExist:
             return HttpResponseRedirect(reverse('home'))
 
+        doctor_entries = []
+        for doctor in doctors:
+            if doctor.street:
+                doctor.street = doctor.street.replace('(', '').replace(')', '')
+
+            if doctor.phone_number:
+                doctor.phone_number = doctor.phone_number.replace('(cabinet)', '')
+                doctor.phone_number = doctor.phone_number.replace('.', ' ')
+
+            doctor_entries.append(doctor)
+
         data = {
             'city': city,
-            'doctors': doctors
+            'doctors': doctor_entries,
+            'profession': profession,
         }
         return render(request,
                       'medicus/listing.html',
@@ -158,6 +172,10 @@ def propose_doctor(request):
         if form.is_valid():
             name = form.data.get('name')
             profession = form.data.get('profession')
+
+            if profession:
+                profession = profession.replace('-', ' ')
+
             address = form.data.get('address')
             city = form.data.get('city')
             telephone = form.data.get('telephone')
@@ -194,11 +212,6 @@ def propose_doctor(request):
 def thanks(request):
     template = loader.get_template('medicus/thanks.html')
     return HttpResponse(template.render({}, request))
-
-
-# def doctor(request):
-#     template = loader.get_template('medicus/doctor.html')
-#     return HttpResponse(template.render({}, request))
 
 
 def login(request):
