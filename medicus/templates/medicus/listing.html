@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Bacau City, Romania</h1>
+                        <h1 class="page-title">{{ city }}, Romania</h1>
                     </div>
                 </div>
             </div>
@@ -21,6 +21,9 @@
                     <div class="col-md-12 clear ">
                         <div id="list-type" class="proerty-th">
 
+                                                                {% for doctor in doctors %}
+
+
                             <div class="col-sm-6 col-md-12 p0">
                                 <div class="box-two proerty-item">
                                     <div class="col-md-4">
@@ -33,16 +36,26 @@
                                             <p class="ratingtext">3.8</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <h2 class="doc-name">Dr. Toothy</h2>
-                                        <p class="details">
-                                          Stomatologie<br>
-                                          str. Stefan cel Mare, 24<br>
-                                          <a href="tel:555-555-5555">555-555-5555</a>
-                                        </p>
-                                    </div>
+
+
+                                        <div class="col-md-8">
+                                            <h2 class="doc-name">
+                                                <a href="/doctor/{{doctor.id}}" >{{ doctor.name }}</a>
+                                            </h2>
+                                            <p class="details">
+                                              {{ doctor.address.address }}<br>
+                                              str. Stefan cel Mare, 24<br>
+                                              <a href="tel:{{doctor.phone_number}}">{{ doctor.phone_number }}</a>
+                                            </p>
+                                        </div>
+
+
+
                                 </div>
                             </div>
+
+                                                                {% endfor %}
+
 
                         </div>
                     </div>
