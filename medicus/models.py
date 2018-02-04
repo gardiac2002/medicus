@@ -62,6 +62,7 @@ class City(models.Model):
 
 
 class Address(models.Model):
+    name = models.CharField(max_length=200, blank=True, )
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
