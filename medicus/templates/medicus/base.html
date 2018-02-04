@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -38,7 +37,7 @@
     <body>
         {% block body %}
             {% if messages %}
-            <div>
+            <div class="alert alert-warning">
               <strong>Messages:</strong>
               <ul>
             {% for message in messages %}

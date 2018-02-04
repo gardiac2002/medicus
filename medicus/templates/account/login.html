@@ -26,15 +26,28 @@
       {% if socialaccount_providers %}
 
       <div class="socialaccount_ballot margin-top-30">
-        <ul class="socialaccount_providers">
-          {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-        </ul>
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
       </div>
 
       {% include "socialaccount/snippets/login_extra.html" %}
 
       {% else %}
         <a href="{{ signup_url }}" class="btn btn-secondary">sign up</a>
+      {% endif %}
+
+      {% if form.errors %}
+      {% for field in form %}
+      {% for error in field.errors %}
+      <div class="alert alert-warning">
+        <strong>{{ error|escape }}</strong>
+      </div>
+      {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+      <div class="alert alert-warning">
+        <strong>{{ error|escape }}</strong>
+      </div>
+      {% endfor %}
       {% endif %}
 
       <form class="login margin-top-30" method="POST" action="{% url 'account_login' %}">
@@ -49,7 +62,7 @@
       </form>
       <a class="btn btn-text btn-block margin-top-30" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 
-      <a href="{{ signup_url }}" class="btn btn-block btn-secondary margin-top-30">Don't have an account yet?</a>
+      <a href="{{ signup_url }}" class="btn btn-block btn-text margin-top-30">Don't have an account yet?</a>
       <br><br><br>
     </div>
   </div>

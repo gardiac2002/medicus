@@ -5,53 +5,74 @@
 
 {% block content %}
 
-        <div class="page-head">
-            <div class="container">
-                <div class="row">
-                    <div class="page-head-content">
-                        <h1 class="page-title">{{ name }}</h1>
-						<h4>{{ profession }}</h4>
-
-						<Strong>Address: </Strong> {{ street }}, {{ city }}<br />
-
-						{% if email %}
-							<Strong>Email: </Strong> {{ email }} <br />
-						{% endif %}
-
-						{% if phone_number %}
-							<Strong>Phone Number: </Strong> {{ phone_number }} <br />
-						{% endif %}
-
-						{% if website %}
-							<Strong>Website: </Strong> {{ website }} <br />
-						{% endif %}
-
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="page-head">
+  <div class="container doc-details">
+    <div class="row pbm text-center">
+      <h1>{{ name }}</h1>
+      <div class="col-md-2 col-md-offset-3 col-sm-4 col-xs-12">
+        <p><strong>specialty</strong><br>
+    		{{ profession }}</p>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-12">
+        <p><strong>address</strong><br>
+        {{ street }}, {{ city }}</p>
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-12">
+        <p><strong>address</strong><br>
+        {% if email %} {{ email }} <br> {% endif %}
+        {% if phone_number %} {{ phone_number }} <br> {% endif %}
+        {% if website %} {{ website }} {% endif %}</p>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- End page header -->
 
     <div class="container">
 		<div class="row">
 			<div class="col-md-3">
-				<div class="rating-block">
-					<h4>User rating</h4>
-					<h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-				</div>
+        <div class="ratingbox">
+            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star ratingstar" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star-empty ratingstar" aria-hidden="true"></span>
+            <p class="ratingtext">3.8</p>
+        </div>
 			</div>
+      <div class="col-md-6 ratingbox">
+        <div class="col-xs-4 text-right"> <p><strong>PRICE</strong></p> </div>
+        <div class="col-xs-8">
+          <p>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+          </p>
+        </div>
+        <div class="col-xs-4 text-right"> <p><strong>WARTEZEIT</strong></p> </div>
+        <div class="col-xs-8">
+          <p>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+          </p>
+        </div>
+        <div class="col-xs-4 text-right"> <p><strong>TREATMENT</strong></p> </div>
+        <div class="col-xs-8">
+          <p>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+          </p>
+        </div>
 
-            <div class="col-md-3">
-            </div>
+      </div>
 		</div>
 
 		<div class="row">
