@@ -25,9 +25,13 @@ def index(request):
     :param request:
     :return:
     """
-
+    professions = list(models.Profession.objects.values_list('name', flat=True))
     form = medicus_forms.SearchDoctorForm()
-    return render(request, 'medicus/index.html', {'form': form})
+    data = {
+        'form': form,
+        'professions': professions,
+    }
+    return render(request, 'medicus/index.html', data)
 
 
 def search(request):
@@ -45,64 +49,26 @@ def search(request):
         return render(request, 'medicus/index.html', {})
 
 
-def doctor(request):
-    return render(request, 'medicus/doctor.html', {})
+def doctor(request, doctorid):
+
+    if request.method == 'GET':
+        doctor_obj = models.Doctor.objects.get(pk=doctorid)
+        return render(request, 'medicus/doctor.html', {'doctor': doctor_obj})
 
 
 def doctor_list(request, city, profession):
     if request.method == 'GET':
+        city_obj = models.City.objects.get(name=city)
+        profession_obj = models.Profession.objects.get(name=profession)
+        doctors = models.Doctor.objects.filter(city=city_obj, profession=profession_obj)
 
-        return render(request, 'medicus/listing.html', {})
-
-
-
-
-#
-# class DoctorListView(ListView):
-#     model = models.Doctor
-#     template_name = 'medicus/listing.html'
-#
-#     def get_queryset(self):
-#         try:
-#             city = self.kwargs['city']
-#         except KeyError:
-#             raise Http404
-#         qs = super().get_queryset()
-#
-#         qs = qs.filter(address__city__name__iexact=city)
-#         return qs
-#
-#     def get(self, request, city, profession):
-#         try:
-#             # city = request.data['city']
-#             # name_or_profession = request.data.get('name_or_profession')
-#
-#             # TODO add form validation
-#
-#             qs = models.Doctor.objects.all().filter(address__city__name__iexact=city)
-#             if profession:
-#                 try:
-#                     professions = models.Profession.objects.get(name=profession)
-#                     if professions:
-#                         qs = qs.filter(profession__name=professions)
-#                 except models.Profession.DoesNotExist:
-#                     qs = qs.filter(name__icontains=profession)
-#
-#             return qs
-#
-#         except KeyError:
-#             msg = 'Please provide a city!'
-#             raise Http404(msg)
-#
-#
-# class DoctorDetailView(DetailView):
-#     model = models.Doctor
-#     template_name = 'medicus/doctor_profile.html'
-#
-#
-# class UserDetailView(DetailView):
-#     model = models.User
-#     template_name = 'medicus/user_profile.html'
+        data = {
+            'city': city,
+            'doctors': doctors
+        }
+        return render(request,
+                      'medicus/listing.html',
+                      data)
 
 
 def propose_doctor(request):
@@ -135,9 +101,15 @@ def propose_doctor(request):
 
             return HttpResponseRedirect('thanks')
         else:
-            return render(request, 'medicus/proposedoctor.html', {'form': form})
+            professions = list(models.Profession.objects.values_list('name', flat=True))
+            data = {
+                'form': form,
+                'professions': professions,
+            }
+            return render(request, 'medicus/proposedoctor.html', data)
     else:
-        return render(request, 'medicus/proposedoctor.html', {})
+        professions = list(models.Profession.objects.values_list('name', flat=True))
+        return render(request, 'medicus/proposedoctor.html', {'professions': professions})
 
 
 def thanks(request):
@@ -145,9 +117,9 @@ def thanks(request):
     return HttpResponse(template.render({}, request))
 
 
-def doctor(request):
-    template = loader.get_template('medicus/doctor.html')
-    return HttpResponse(template.render({}, request))
+# def doctor(request):
+#     template = loader.get_template('medicus/doctor.html')
+#     return HttpResponse(template.render({}, request))
 
 
 def login(request):

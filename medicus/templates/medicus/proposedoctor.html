@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Propose a doctor</h1>
+                        <h1 class="page-title text-center">Add a doctor</h1>
                     </div>
                 </div>
             </div>
@@ -20,8 +20,6 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="" id="contact1">
-
-                            <h2>Propose a doctor</h2>
                             <form method="post" action="propose-doctor">
 
                                 {% csrf_token %}
@@ -29,7 +27,6 @@
                                         {% for field in form %}
                                             {% for error in field.errors %}
                                                 <div class="alert alert-danger">
-
                                                     <strong>{{field.label}}: {{ error|escape }}</strong>
                                                 </div>
                                             {% endfor %}
@@ -44,60 +41,56 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <input type="text" class="form-control" id="address" name="address">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="dr. Exampleson">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="city">City</label>
+                                            <input type="text" class="form-control" name="profession" id="profession" placeholder="Specialty">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="123 Health Street">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
                                             <select id="city" name="city" class="selectpicker" data-live-search="true"
-                                                    data-live-search-style="begins" title="Select your city">
+                                                    data-live-search-style="begins" title="Select city">
                                                 <option>Bacau</option>
                                                 <option>Cluj</option>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="profession">Profession</label>
-                                            <input type="text" class="form-control" name="profession" id="profession">
-                                        </div>
-                                    </div>
 
-
-
+                                    <div class="clearfix"></div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="telephone">Telephone Number</label>
-                                            <input type="text" class="form-control" name="telephone" id="telephone">
+                                            <input type="text" class="form-control" name="telephone" id="telephone" placeholder="911">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email" name="email">
+                                            <input type="text" class="form-control" id="email" name="email" placeholder="drBurrito@avocado.com">
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+
+                                    <div class="col-sm-8 col-sm-offset-2">
                                         <div class="form-group">
-                                            <label for="website">Website</label>
-                                            <input type="text" class="form-control" id="website" name="website">
+                                            <input type="text" class="form-control" id="website" name="website" placeholder="https://www.avocado.com">
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 text-center">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Propose a doctor</button>
+
+                                    <div class="col-sm-6 col-sm-offset-3 text-center margin-top-30">
+                                        <button type="submit" class="btn btn-block btn-primary">Write Santa</button>
                                     </div>
                                 </div>
                                 <!-- /.row -->
