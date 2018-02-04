@@ -18,6 +18,7 @@ from medicus import forms as medicus_forms
 from medicus import models
 
 
+@login_required
 def index(request):
     """
 
