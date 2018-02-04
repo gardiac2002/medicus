@@ -35,8 +35,8 @@ urlpatterns = [
     # url(r'^user/(?P<pk>\d+)/$', view=views.UserDetailView.as_view()),
     url(r'^addadoctor', views.propose_doctor),
 
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    # url(r'^login/$', auth_views.login, name='login'),
+    # url(r'^logout/$', auth_views.logout, name='logout'),
     # url(r'^auth/', include('social_django.urls', namespace='social')),
 
     path('accounts/', include('allauth.urls')),

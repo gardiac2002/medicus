@@ -36,7 +36,17 @@
     </head>
 
     <body>
-
+        {% block body %}
+            {% if messages %}
+            <div>
+              <strong>Messages:</strong>
+              <ul>
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
         <nav class="navbar navbar-default ">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -56,7 +66,13 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <a href="/addadoctor" class="navbar-btn btn btn-text">Add a doctor</a>
-                        <a href="/login" class="navbar-btn btn btn-text">Login</a>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'account_email' %}">Change E-mail</a>
+	                    <a href="{% url 'account_logout' %}">Sign Out</a>
+                        {% else %}
+	                    <a href="{% url 'account_login' %}">Sign In</a>
+	                    <a href="{% url 'account_signup' %}">Sign Up</a>
+                        {% endif %}
                     </div>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -83,6 +99,7 @@
             <script src="{% static "assets/js/price-range.js" %}"></script>
 
             <script src="{% static "assets/js/main.js" %}"></script>
+    {% endblock %}
 
     </body>
 </html>

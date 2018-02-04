@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
 
-
     'medicus',
 ]
 
@@ -64,7 +63,8 @@ ROOT_URLCONF = 'medicus.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,8 +105,8 @@ AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.facebook.FacebookOAuth2',
     # 'social_core.backends.google.GoogleOAuth2',
     # 'social_core.backends.yahoo.YahooOpenId',
-
-    'django.contrib.auth.backends.ModelBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 
