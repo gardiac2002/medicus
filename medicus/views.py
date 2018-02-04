@@ -20,7 +20,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from social_django.models import UserSocialAuth
+# from social_django.models import UserSocialAuth
 
 from medicus import forms as medicus_forms
 from medicus import models
