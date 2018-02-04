@@ -36,9 +36,9 @@ class District(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=100)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    province = models.ForeignKey(Province, on_delete=models.CASCADE, blank=True, null=True)
-    district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
+    # country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    # province = models.ForeignKey(Province, on_delete=models.CASCADE, blank=True, null=True)
+    # district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
 
     # postal_code = models.ForeignKey(PostalCode, on_delete=models.CASCADE)
 
@@ -46,19 +46,19 @@ class City(models.Model):
         return self.name
 
 
-class Location(models.Model):
-    name = models.CharField(max_length=100)
-
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    province = models.ForeignKey(Province, on_delete=models.CASCADE)
-
-    district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
-
-    postal_code = models.OneToOneField(PostalCode, on_delete=models.CASCADE, blank=True, null=True)
-
-    def __str__(self):
-        return self.name
+# class Location(models.Model):
+#     name = models.CharField(max_length=100)
+#
+#     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+#     province = models.ForeignKey(Province, on_delete=models.CASCADE)
+#
+#     district = models.ForeignKey(District, on_delete=models.CASCADE, blank=True, null=True)
+#     city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
+#
+#     postal_code = models.OneToOneField(PostalCode, on_delete=models.CASCADE, blank=True, null=True)
+#
+#     def __str__(self):
+#         return self.name
 
 
 class Address(models.Model):
@@ -66,10 +66,12 @@ class Address(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True, null=True)
+   # location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True, null=True)
 
     street = models.CharField(max_length=150, blank=True, default='')
-    house_number = models.CharField(max_length=10, blank=True, default='')
+    # house_number = models.CharField(max_length=10, blank=True, default='')
+
+    address = models.CharField(max_length=200)
 
     def __str__(self):
         return str((self.street, self.house_number))
@@ -85,11 +87,15 @@ class Profession(models.Model):
 class Doctor(models.Model):
     name = models.CharField(max_length=100, blank=False)
 
-    profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, blank=True, null=True)
+    profession = models.ForeignKey(Profession, on_delete=models.DO_NOTHING)
+    street = models.CharField(max_length=120)
+    city = models.ForeignKey(City, on_delete=models.DO_NOTHING, blank=True, null=True)
+
+    # address = models.ForeignKey(Address, on_delete=models.CASCADE, blank=True, null=True)
     phone_number = models.CharField(max_length=50, blank=True, default='')
     email = models.CharField(max_length=150, blank=True, default='')
     info = models.TextField(blank=True, default='')
+    website = models.URLField(blank=True, default='')
     picture = models.ImageField(upload_to='doctor/images', blank=True)
 
     def __str__(self):

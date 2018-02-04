@@ -23,18 +23,23 @@
         <div class="content text-center">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                    <h2>Find your doctor!</h2>
-                    <p>medicus: an easy way to search for doctors in your city</p>
+                    <h1>Find Your Doc!</h1>
+                    <p>medicus: the easy way to find the doctors in your city</p>
                     <div class="search-form wow pulse" data-wow-delay="0.8s">
-
-                      <form method="post" action="search" class=" form-inline">
-                          <!--<button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>-->
+                      <form method="post" action="search" class="form-inline">
                           {% csrf_token %}
 
-                          <input id="profession" name="profession" type="text" placeholder="Profession" />
-                          <input id="city" name="city" type="text" placeholder="city"/>
-                          <button class="btn search-btn" type="submit"><p>Search</p></button>
-
+                          <div class="form-group">
+                            <input id="profession" name="profession" type="text" placeholder="Specialty" class="form-control" />
+                          </div>
+                          <div class="form-group">
+                            <select id="city" name="city" class="selectpicker" title="Select city">
+                                <option>Bacau</option>
+                                <option>Cluj</option>
+                            </select>
+                          </div>
+                          <button class="btn btn-primary hidden-xs hidden-sm" type="submit"><i class="fa fa-search"></i></button>
+                          <button class="btn btn-primary btn-block hidden-md hidden-lg" type="submit">Search</button>
                       </form>
                     </div>
                 </div>

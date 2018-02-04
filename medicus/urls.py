@@ -28,9 +28,9 @@ urlpatterns = [
     url(r'^listing/(?P<profession>\w+)/(?P<city>\w+)', views.doctor_list),
 
     url(r'^search', views.search),
-
-    url(r'^doctor/(?P<pk>\d+)/$', view=views.DoctorDetailView.as_view()),
-    url(r'^user/(?P<pk>\d+)/$', view=views.UserDetailView.as_view()),
+    url(r'thanks', views.thanks),
+    # url(r'^doctor/(?P<pk>\d+)/$', view=views.DoctorDetailView.as_view()),
+    # url(r'^user/(?P<pk>\d+)/$', view=views.UserDetailView.as_view()),
     url(r'^propose-doctor', views.propose_doctor),
 
     url(r'^login/$', auth_views.login, name='login'),
