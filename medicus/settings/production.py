@@ -77,6 +77,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
             'django.core.context_processors.static',
 )
 
+
+def get_env_variable(var_name: str) -> str:
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        msg = 'Set the {} environment variable'.format(var_name)
+        raise ImproperlyConfigured(msg)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = get_env_variable('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = get_env_variable('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+
 AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.github.GithubOAuth2',
     # 'social_core.backends.twitter.TwitterOAuth',
@@ -91,7 +103,8 @@ AUTHENTICATION_BACKENDS = (
 # Auth urls
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = 'home'
+
 
 
 WSGI_APPLICATION = 'medicus.wsgi.application'
@@ -100,12 +113,6 @@ WSGI_APPLICATION = 'medicus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-def get_env_variable(var_name: str) -> str:
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        msg = 'Set the {} environment variable'.format(var_name)
-        raise ImproperlyConfigured(msg)
 
 # DATABASES = {
 #     'default': {
