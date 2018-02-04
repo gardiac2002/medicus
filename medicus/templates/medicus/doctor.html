@@ -9,10 +9,23 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">{{ doctor.name }}</h1>
-						<h4>{{ doctor.profession }}</h4>
+                        <h1 class="page-title">{{ name }}</h1>
+						<h4>{{ profession }}</h4>
 
-						<Strong>Address: </Strong> {{ doctor.street }}
+						<Strong>Address: </Strong> {{ street }}, {{ city }}<br />
+
+						{% if email %}
+							<Strong>Email: </Strong> {{ email }} <br />
+						{% endif %}
+
+						{% if phone_number %}
+							<Strong>Phone Number: </Strong> {{ phone_number }} <br />
+						{% endif %}
+
+						{% if website %}
+							<Strong>Website: </Strong> {{ website }} <br />
+						{% endif %}
+
                     </div>
                 </div>
             </div>

@@ -6,7 +6,14 @@
       <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0"
         <form method="post">
           {% csrf_token %}
-          {{ form.as_p }}
+          <label for="id_username">Username:</label>
+
+                    <input name="username" required="" maxlength="254" autofocus="" id="id_username" type="text">
+
+          <label for="id_password">Password:</label>
+                    <input name="password" required="" id="id_password" type="password">
+
+
           <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
         <div class="clearfix margin-top-30"></div>

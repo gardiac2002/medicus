@@ -8,6 +8,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.http import HttpResponseRedirect
 from django.template import loader
+from django.urls import reverse
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import ListView, DetailView, UpdateView
 from django.urls import reverse
 from django.shortcuts import render_to_response, redirect, render
@@ -23,7 +26,6 @@ from medicus import forms as medicus_forms
 from medicus import models
 
 
-@login_required
 def index(request):
     """
 
@@ -42,17 +44,6 @@ def index(request):
 @login_required
 def settings(request):
     user = request.user
-
-    # try:
-    #     github_login = user.social_auth.get(provider='github')
-    # except UserSocialAuth.DoesNotExist:
-    #     github_login = None
-
-    # try:
-    #     twitter_login = user.social_auth.get(provider='twitter')
-    # except UserSocialAuth.DoesNotExist:
-    #     twitter_login = None
-
     try:
         facebook_login = user.social_auth.get(provider='facebook')
     except UserSocialAuth.DoesNotExist:
@@ -101,6 +92,8 @@ def search(request):
         if form.is_valid():
             city = form.data.get('city')
             profession = form.data.get('profession')
+            profession = profession.replace(' ', '_')
+
             link = 'listing/{profession}/{city}/'.format(city=city, profession=profession)
             return HttpResponseRedirect(link)
         else:
@@ -112,19 +105,59 @@ def search(request):
 def doctor(request, doctorid):
 
     if request.method == 'GET':
-        doctor_obj = models.Doctor.objects.get(pk=doctorid)
-        return render(request, 'medicus/doctor.html', {'doctor': doctor_obj})
+        try:
+            doctor_obj = models.Doctor.objects.get(pk=doctorid)
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect(reverse('home'))
+
+        city = doctor_obj.city
+        street = doctor_obj.street
+        street = street.replace('(', '').replace(')', '')
+
+        if doctor_obj.phone_number:
+            doctor_obj.phone_number = doctor_obj.phone_number.replace(' (cabinet)', '')
+
+        data = {
+            'name': doctor_obj.name,
+            'profession': doctor_obj.profession,
+
+            'street': street,
+            'city': city,
+            'phone_number': doctor_obj.phone_number,
+            'email': doctor_obj.email,
+            'website': doctor_obj.website,
+        }
+        return render(request, 'medicus/doctor.html', data)
 
 
 def doctor_list(request, city, profession):
     if request.method == 'GET':
-        city_obj = models.City.objects.get(name=city)
-        profession_obj = models.Profession.objects.get(name=profession)
-        doctors = models.Doctor.objects.filter(city=city_obj, profession=profession_obj)
+        try:
+
+            if '_' in profession:
+                profession = profession.replace('_', ' ')
+
+            city_obj = models.City.objects.get(name=city)
+            profession_obj = models.Profession.objects.get(name=profession)
+            doctors = models.Doctor.objects.filter(city=city_obj, profession=profession_obj)
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect(reverse('home'))
+
+        doctor_entries = []
+        for doctor in doctors:
+            if doctor.street:
+                doctor.street = doctor.street.replace('(', '').replace(')', '')
+
+            if doctor.phone_number:
+                doctor.phone_number = doctor.phone_number.replace('(cabinet)', '')
+                doctor.phone_number = doctor.phone_number.replace('.', ' ')
+
+            doctor_entries.append(doctor)
 
         data = {
             'city': city,
-            'doctors': doctors
+            'doctors': doctor_entries,
+            'profession': profession,
         }
         return render(request,
                       'medicus/listing.html',
@@ -139,6 +172,10 @@ def propose_doctor(request):
         if form.is_valid():
             name = form.data.get('name')
             profession = form.data.get('profession')
+
+            if profession:
+                profession = profession.replace('-', ' ')
+
             address = form.data.get('address')
             city = form.data.get('city')
             telephone = form.data.get('telephone')
@@ -175,11 +212,6 @@ def propose_doctor(request):
 def thanks(request):
     template = loader.get_template('medicus/thanks.html')
     return HttpResponse(template.render({}, request))
-
-
-# def doctor(request):
-#     template = loader.get_template('medicus/doctor.html')
-#     return HttpResponse(template.render({}, request))
 
 
 def login(request):
