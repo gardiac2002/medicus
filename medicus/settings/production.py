@@ -107,10 +107,21 @@ def get_env_variable(var_name: str) -> str:
         msg = 'Set the {} environment variable'.format(var_name)
         raise ImproperlyConfigured(msg)
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_variable('MEDICUS_DB'),
+        'USER': get_env_variable('MEDICUS_USER'),
+        'PASSWORD': get_env_variable('MEDICUS_PASSWORD'),
+        'HOST': get_env_variable('MEDICUS_HOST'),
+        'PORT': get_env_variable('MEDICUS_PORT'),
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
