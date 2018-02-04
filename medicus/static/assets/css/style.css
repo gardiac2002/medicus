@@ -312,6 +312,22 @@ input[type="search"]::-webkit-search-decoration {
     border-color: #F0F0F0;
     font-weight: 600;
 }
+
+.btn-secondary {
+    border-radius: 1px;
+    padding: 10px 20px;
+    border: 0px;
+    color: #383838;
+    background-color: #e8e8e8;
+    border-color: #383838;
+    font-weight: 600;
+}
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open > .dropdown-toggle.btn-secondary {
+    color: #383838;
+    background-color: #e8e8e8;
+    font-weight: 600;
+}
+
 .search-form {
     background-color: #fff;
     border-radius: 5px;
