@@ -38,6 +38,10 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^auth/', include('social_django.urls', namespace='social')),
+
+    url(r'^settings/$', views.settings, name='settings'),
+    url(r'^settings/password/$', views.password, name='password'),
+
     url(r'^admin/', admin.site.urls),
 ]
 
