@@ -8,6 +8,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.http import HttpResponseRedirect
 from django.template import loader
+from django.urls import reverse
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import ListView, DetailView, UpdateView
 from django.urls import reverse
 from django.shortcuts import render_to_response, redirect, render
@@ -23,7 +26,6 @@ from medicus import forms as medicus_forms
 from medicus import models
 
 
-@login_required
 def index(request):
     """
 
@@ -42,17 +44,6 @@ def index(request):
 @login_required
 def settings(request):
     user = request.user
-
-    # try:
-    #     github_login = user.social_auth.get(provider='github')
-    # except UserSocialAuth.DoesNotExist:
-    #     github_login = None
-
-    # try:
-    #     twitter_login = user.social_auth.get(provider='twitter')
-    # except UserSocialAuth.DoesNotExist:
-    #     twitter_login = None
-
     try:
         facebook_login = user.social_auth.get(provider='facebook')
     except UserSocialAuth.DoesNotExist:
@@ -101,6 +92,8 @@ def search(request):
         if form.is_valid():
             city = form.data.get('city')
             profession = form.data.get('profession')
+            profession = profession.replace(' ', '_')
+
             link = 'listing/{profession}/{city}/'.format(city=city, profession=profession)
             return HttpResponseRedirect(link)
         else:
@@ -112,7 +105,10 @@ def search(request):
 def doctor(request, doctorid):
 
     if request.method == 'GET':
-        doctor_obj = models.Doctor.objects.get(pk=doctorid)
+        try:
+            doctor_obj = models.Doctor.objects.get(pk=doctorid)
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect(reverse('home'))
 
         city = doctor_obj.city
         street = doctor_obj.street
@@ -120,6 +116,8 @@ def doctor(request, doctorid):
 
         data = {
             'name': doctor_obj.name,
+            'profession': doctor_obj.profession,
+
             'street': street,
             'city': city,
             'phone_number': doctor_obj.phone_number,
@@ -132,9 +130,16 @@ def doctor(request, doctorid):
 
 def doctor_list(request, city, profession):
     if request.method == 'GET':
-        city_obj = models.City.objects.get(name=city)
-        profession_obj = models.Profession.objects.get(name=profession)
-        doctors = models.Doctor.objects.filter(city=city_obj, profession=profession_obj)
+        try:
+
+            if '_' in profession:
+                profession = profession.replace('_', ' ')
+
+            city_obj = models.City.objects.get(name=city)
+            profession_obj = models.Profession.objects.get(name=profession)
+            doctors = models.Doctor.objects.filter(city=city_obj, profession=profession_obj)
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect(reverse('home'))
 
         data = {
             'city': city,
