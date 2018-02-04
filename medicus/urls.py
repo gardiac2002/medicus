@@ -25,7 +25,7 @@ from medicus import views
 
 urlpatterns = [
     path(r'', views.index, name='home'),
-    url(r'^home', views.index),
+    # url(r'^home', views.index),
     url(r'^listing/(?P<profession>\w+)/(?P<city>\w+)', views.doctor_list),
 
     url(r'^search', views.search),
@@ -37,11 +37,13 @@ urlpatterns = [
 
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
-    url(r'^auth/', include('social_django.urls', namespace='social')),
+    # url(r'^auth/', include('social_django.urls', namespace='social')),
 
-    url(r'^settings/$', views.settings, name='settings'),
-    url(r'^settings/password/$', views.password, name='password'),
+    path('accounts/', include('allauth.urls')),
 
+    # url(r'^settings/$', views.settings, name='settings'),
+    # url(r'^settings/password/$', views.password, name='password'),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 

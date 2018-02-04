@@ -34,10 +34,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django.contrib.sites',
     'crispy_forms',
 
-    'social_django',
+    # 'social_django',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
 
     'medicus',
 ]
@@ -74,7 +80,11 @@ TEMPLATES = [
     },
 ]
 TEMPLATE_CONTEXT_PROCESSORS = (
-            'django.core.context_processors.static',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount'
 )
 
 
@@ -92,19 +102,12 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = get_env_variable('SOCIAL_AUTH_GOOGLE_OAUTH2_S
 AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.github.GithubOAuth2',
     # 'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.google.GoogleOAuth2',
     # 'social_core.backends.yahoo.YahooOpenId',
 
     'django.contrib.auth.backends.ModelBackend',
 )
-
-
-# Auth urls
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'home'
-
 
 
 WSGI_APPLICATION = 'medicus.wsgi.application'
@@ -189,3 +192,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET')
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # assert DEBUG == False
 # assert SECRET_KEY
+
+SITE_ID = 1
+
+# Auth urls
+# LOGIN_URL = 'login'
+# LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/'
