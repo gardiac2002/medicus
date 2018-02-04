@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Medicus | găsiți un medic</title>
+        <title>Medicus | gaseste-ti medicul</title>
         <meta name="description" content="GARO is a real-estate template">
         <meta name="author" content="Kimarotec">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -67,11 +67,9 @@
                     <div class="button navbar-right">
                         <a href="/addadoctor" class="navbar-btn btn btn-text">Add a doctor</a>
                         {% if user.is_authenticated %}
-                        <a href="{% url 'account_email' %}">Change E-mail</a>
-	                    <a href="{% url 'account_logout' %}">Sign Out</a>
+    	                    <a href="{% url 'account_logout' %}">Sign Out</a>
                         {% else %}
-	                    <a href="{% url 'account_login' %}">Sign In</a>
-	                    <a href="{% url 'account_signup' %}">Sign Up</a>
+    	                    <a href="{% url 'account_login' %}">Sign In</a>
                         {% endif %}
                     </div>
                 </div><!-- /.navbar-collapse -->
