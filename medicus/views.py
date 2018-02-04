@@ -24,9 +24,13 @@ def index(request):
     :param request:
     :return:
     """
-
+    professions = list(models.Profession.objects.values_list('name', flat=True))
     form = medicus_forms.SearchDoctorForm()
-    return render(request, 'medicus/index.html', {'form': form})
+    data = {
+        'form': form,
+        'professions': professions,
+    }
+    return render(request, 'medicus/index.html', data)
 
 
 def search(request):
@@ -96,9 +100,15 @@ def propose_doctor(request):
 
             return HttpResponseRedirect('thanks')
         else:
-            return render(request, 'medicus/proposedoctor.html', {'form': form})
+            professions = list(models.Profession.objects.values_list('name', flat=True))
+            data = {
+                'form': form,
+                'professions': professions,
+            }
+            return render(request, 'medicus/proposedoctor.html', data)
     else:
-        return render(request, 'medicus/proposedoctor.html', {})
+        professions = list(models.Profession.objects.values_list('name', flat=True))
+        return render(request, 'medicus/proposedoctor.html', {'professions': professions})
 
 
 def thanks(request):
