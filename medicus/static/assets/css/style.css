@@ -1107,9 +1107,8 @@ font-weight: 500;
 page-header
 ======================================================*/
 .page-head{
-    background: #494C53 url("../../assets/img/page-header.jpg")
-        no-repeat scroll center top / cover;
     color:#FFF;
+    background: #7ba7a0;
     position: relative;
     min-height: 140px;
 }
@@ -3069,10 +3068,15 @@ padding: 10px;
 }
 .ratingtext {
     font-size: 50px;
-    align: centered;
+    text-align: centered;
 }
 
 .ratingbox {
     margin: 1em;
     margin-top: 2.5em;
 }
+
+.proerty-item .ratingbox,
+.proerty-item .doc-name { margin-top: 20px; }
+
+.proerty-item p.details { font-size: 20px; }
