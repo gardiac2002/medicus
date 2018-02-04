@@ -52,7 +52,21 @@ def doctor(request, doctorid):
 
     if request.method == 'GET':
         doctor_obj = models.Doctor.objects.get(pk=doctorid)
-        return render(request, 'medicus/doctor.html', {'doctor': doctor_obj})
+
+        city = doctor_obj.city
+        street = doctor_obj.street
+        street = street.replace('(', '').replace(')', '')
+
+        data = {
+            'name': doctor_obj.name,
+            'street': street,
+            'city': city,
+            'phone_number': doctor_obj.phone_number,
+            'email': doctor_obj.email,
+            'website': doctor_obj.website,
+        }
+
+        return render(request, 'medicus/doctor.html', data)
 
 
 def doctor_list(request, city, profession):

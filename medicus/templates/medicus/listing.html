@@ -21,7 +21,8 @@
                     <div class="col-md-12 clear ">
                         <div id="list-type" class="proerty-th">
 
-                                                                {% for doctor in doctors %}
+
+                            {% for doctor in doctors %}
 
 
                             <div class="col-sm-6 col-md-12 p0">
@@ -43,8 +44,7 @@
                                                 <a href="/doctor/{{doctor.id}}" >{{ doctor.name }}</a>
                                             </h2>
                                             <p class="details">
-                                              {{ doctor.address.address }}<br>
-                                              str. Stefan cel Mare, 24<br>
+                                              {{ doctor.street }}, {{doctor.city}}<br>
                                               <a href="tel:{{doctor.phone_number}}">{{ doctor.phone_number }}</a>
                                             </p>
                                         </div>
