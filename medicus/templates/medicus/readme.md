@@ -1,6 +1,6 @@
 Hello,
 
-thank you for purchusing GARO ESTATE Template. 
+thank you for purchusing Medicus Template. 
  
 
 
